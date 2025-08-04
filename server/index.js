@@ -2,7 +2,10 @@ const express = require('express');
 const bookRouter = require("./routes/book.route.js")
 const databaseConnection = require("./database");
 const app = express();
+const cors = require("cors")
+
 app.use(express.json());
+app.use(cors());
 
 databaseConnection();
 

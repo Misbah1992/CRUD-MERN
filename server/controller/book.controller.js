@@ -6,10 +6,10 @@ const handleBookController = async (req, res) => {
         if (!body.BookName || !body.BookTitle || !body.Author || !body.SellingPrice) {
             return res.status(400).json({ Message: "All feilds required", Success: false })
         }
-        const bookAdd = await Book.insertOne(body);
+        const bookAdd = await Book.create(body);
 
         if(bookAdd){
-            return res.status(201).json({ Message: "data inseted successfully", Success: true,Id:bookAdd?._id });
+            return res.status(201).json({ Message: "data inserted successfully", Success: true,Id:bookAdd?._id });
         }
         console.log(bookAdd, "bookAdd")
     } catch (error) {
@@ -17,4 +17,16 @@ const handleBookController = async (req, res) => {
     }
 };
 
-module.exports = { handleBookController }
+const handleBookListController = async (req,res)=>{
+  try{
+    const bookList = await Book.find({});
+    return  res.status(200).json({ Message: "All books data", Success: true,
+        BookList:bookList
+     })
+  }catch(error){
+    return  res.status(400).json({ Message: error.message, Success: false })
+
+  }
+};
+
+module.exports = { handleBookController ,handleBookListController}
