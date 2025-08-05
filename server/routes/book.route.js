@@ -1,10 +1,13 @@
 const express = require('express');
-const {handleBookController,handleBookListController} = require("../controller/book.controller.js")
+const {handleBookController,handleBookListController,handleBookDeleteController,handleBookUpdateController} = require("../controller/book.controller.js")
 
 const router = express.Router();
 
 
-router.post('/addbook',handleBookController)
-router.get('/booklists',handleBookListController)
+router.post('/addbook',handleBookController);
+router.get('/booklists',handleBookListController);
+router.post('/deletebook',handleBookDeleteController);
+router.put('/updatebook',handleBookUpdateController);
 
-module.exports = router
+
+module.exports = router;
